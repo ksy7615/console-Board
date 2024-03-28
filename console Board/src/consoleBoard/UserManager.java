@@ -10,7 +10,7 @@ public class UserManager {
 	}
 
 	public User addUser(String id, String password) {
-		if (isValidUser(id)) {
+		if (isValidId(id)) {
 			User user = new User(id, password);
 			list.add(user);
 			return user.clone();
@@ -23,11 +23,21 @@ public class UserManager {
 		return user;
 	}
 
-	public boolean isValidUser(String id) {
+	public boolean isValidId(String id) {
 		for (User user : list) {
 			if (id.equals(user.getId()))
 				return false;
 		}
 		return true;
+	}
+	
+	// 아이디로 조회용
+	public User getUserById(String id) {
+		for(User user : list) {
+			if(user.getId().equals(id)) {
+				return user;
+			}
+		}
+		return new User();
 	}
 }
