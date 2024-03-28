@@ -4,6 +4,10 @@ public class User {
 	private String id, password;
 	private boolean isRight;
 	
+	public User() {
+		
+	}
+	
 	public User(String id, String password) {
 		this.id = id;
 		this.password = password;
