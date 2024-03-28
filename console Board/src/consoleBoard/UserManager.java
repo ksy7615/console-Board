@@ -15,4 +15,8 @@ public class UserManager {
 		return user.clone();
 	}
 	
+	public User getUser(int index) {
+		User user = list.get(index);
+		return user;
+	}
 }
