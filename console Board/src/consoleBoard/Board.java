@@ -59,5 +59,11 @@ public class Board {
 			return new Board();
 		}
 	}
+	
+	// 작성된 게시글 보여주는 용
+	public void printPostAll() {
+		Board board = new Board(this.title, this.content, this.writerId);
+		System.out.println(board);
+	}
 
 }
