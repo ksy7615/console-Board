@@ -30,5 +30,17 @@ public class BoardManager {
 		}
 		return new Post();
 	}
+	
+	// 자기 글만 수정을 할 수 있어야함
+	public void setTitlePost(User user, int index, String title) {
+		// 권한이 있으면
+		if(user.isRight()) {
+			// 쓴 글중에 수정할 걸 선택해서
+			Post post = board.get(index);
+			post.setTitle(title);
+		}
+	}
+	
+	
 
 }
