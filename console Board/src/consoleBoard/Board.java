@@ -33,4 +33,14 @@ public class Board {
 		return new Board(this.title, this.content);
 	}
 	
+	public Board addPost(String title, String content) {
+		if(title != null && content != null) {
+			Board board = new Board(title, content);
+			return board.clone();
+		} else {
+			System.err.println("제목을 입력해주세요.");
+			return new Board();
+		}
+	}
+	
 }
