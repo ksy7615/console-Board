@@ -35,8 +35,8 @@ public class Board {
 		return new Board(this.title, this.content, this.writerId);
 	}
 
-	public Board addPost(String title, String content, String writerId) {
-		if (writerId != null) {
+	public Board addPost(String title, String content, String writerId, User user) {
+		if (!writerId.equals(user.getId())) {
 			if (title != null && content != null) {
 				Board board = new Board(title, content, writerId);
 				return board.clone();
