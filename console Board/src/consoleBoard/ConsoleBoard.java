@@ -78,6 +78,14 @@ public class ConsoleBoard {
 		this.user = null;
 		System.out.println("로그아웃 완료");
 	}
+	
+	private void viewPostAll() {
+		System.out.println("===============");
+		for(int i=0; i<map.get(user).size(); i++) {
+			System.out.println(String.format("%d)\n%s\n", i+1, map.get(user).get(i)));
+		}
+		System.out.println("===============");
+	}
 
 	private void writePost() {
 		if(this.user == null) {
@@ -104,8 +112,8 @@ public class ConsoleBoard {
 			login();
 		else if (select == 4)
 			logout();
-//		else if(select == 5)
-//			viewPost();
+		else if(select == 5)
+			viewPostAll();
 		else if (select == 6)
 			writePost();
 //		else if(select == 7)
