@@ -35,35 +35,4 @@ public class Board {
 		return new Board(this.title, this.content, this.writerId);
 	}
 
-	public Board addPost(String title, String content, String writerId, User user) {
-		if (writerId.equals(user.getId())) {
-			if (title != null && content != null) {
-				Board board = new Board(title, content, writerId);
-				return board.clone();
-			} else {
-				System.err.println("제목과 내용을 입력해주세요.");
-				return new Board();
-			}
-		} else {
-			System.err.println("존재하지 않는 ID입니다.");
-			return new Board();
-		}
-	}
-	
-	// 작성자가 쓴 글 보여주기
-	public Board getPost(User user, String writerId) {
-		if(user.getId().equals(writerId)) {
-			Board board = new Board(this.title, this.content, this.writerId);
-			return board;
-		} else {
-			return new Board();
-		}
-	}
-	
-	// 작성된 게시글 보여주는 용
-	public void printPostAll() {
-		Board board = new Board(this.title, this.content, this.writerId);
-		System.out.println(board);
-	}
-
 }
