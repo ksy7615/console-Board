@@ -10,7 +10,7 @@ public class ConsoleBoard {
 	private Map<User, ArrayList<Post>> map;
 	private ArrayList<Post> board;
 //	private List keySet;
-	
+
 	private UserManager userManager;
 	private BoardManager boardManager;
 	private User user;
@@ -78,17 +78,9 @@ public class ConsoleBoard {
 		this.user = null;
 		System.out.println("로그아웃 완료");
 	}
-	
-	private void viewPostAll() {
-		System.out.println("===============");
-		for(int i=0; i<map.get(user).size(); i++) {
-			System.out.println(String.format("%d)\n%s\n", i+1, map.get(user).get(i)));
-		}
-		System.out.println("===============");
-	}
 
 	private void writePost() {
-		if(this.user == null) {
+		if (this.user == null) {
 			System.err.println("회원만 포스팅할 수 있습니다.");
 			return;
 		}
@@ -102,6 +94,13 @@ public class ConsoleBoard {
 		System.out.println("포스팅이 등록되었습니다.");
 	}
 	
+	private void viewMyPost() {
+		System.out.println("===============");
+		for (int i = 0; i < map.get(user).size(); i++) {
+			System.out.println(String.format("%d) 작성자 : %s\n%s", i + 1, user.getId(), map.get(user).get(i)));
+		}
+		System.out.println("===============");
+	}
 
 	private void runBoard(int select) {
 		if (select == 1)
@@ -112,8 +111,8 @@ public class ConsoleBoard {
 			login();
 		else if (select == 4)
 			logout();
-		else if(select == 5)
-			viewPostAll();
+//		else if (select == 5)
+//			viewPostAll();
 		else if (select == 6)
 			writePost();
 //		else if(select == 7)
