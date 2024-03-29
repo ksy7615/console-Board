@@ -3,10 +3,15 @@ package consoleBoard;
 import java.util.ArrayList;
 
 public class UserManager {
-	private ArrayList<User> list;
+	private ArrayList<User> list = new ArrayList<>();
 
-	public UserManager() {
-		list = new ArrayList<>();
+	private UserManager() {
+	}
+	
+	private static UserManager instance = new UserManager();
+	
+	public static UserManager getInstance() {
+		return instance;
 	}
 
 	public User addUser(String id, String password) {
