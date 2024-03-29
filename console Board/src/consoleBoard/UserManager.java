@@ -13,7 +13,7 @@ public class UserManager {
 		if (isValidId(id)) {
 			User user = new User(id, password);
 			list.add(user);
-			return user.clone();
+			return user;
 		}
 		return new User();
 	}
