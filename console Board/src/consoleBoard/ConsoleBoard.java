@@ -30,10 +30,32 @@ public class ConsoleBoard {
 		System.out.println("[0] 종료");
 		System.out.println("---------------");
 	}
+	
+	private void runBoard(int select) {
+//		if(select == 1)
+//			join();
+//		else if(select == 2)
+//			leave();
+//		else if(select == 3)
+//			login();
+//		else if(select == 4)
+//			logout();
+//		else if(select == 5)
+//			viewPost();
+//		else if(select == 6)
+//			writePost();
+//		else if(select == 7)
+//			modifyPost();
+//		else if(select == 8)
+//			deletePost();
+		if(select == 0)
+			isExit = true;
+	}
 		
 	public void run() {
 		while(!isExit) {
 			printBoard();
+			int select = inputNumber("선택");
 		}
 	}
 	
@@ -41,7 +63,7 @@ public class ConsoleBoard {
 		int number = -1;
 		
 		try {
-			System.out.println(message + " : ");
+			System.out.print(message + " : ");
 			String input = scanner.next();
 			number = Integer.parseInt(input);
 		} catch (Exception e) {
