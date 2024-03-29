@@ -3,10 +3,15 @@ package consoleBoard;
 import java.util.ArrayList;
 
 public class BoardManager {
-	private ArrayList<Post> board;
+	private ArrayList<Post> board = new ArrayList<>();
 
-	public BoardManager() {
-		board = new ArrayList<>();
+	private BoardManager() {
+	}
+	
+	private static BoardManager instance = new BoardManager();
+	
+	public static BoardManager getInstance() {
+		return instance;
 	}
 
 	public Post addPost(String title, String content, User user) {
