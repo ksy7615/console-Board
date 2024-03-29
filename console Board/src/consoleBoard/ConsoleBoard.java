@@ -3,11 +3,14 @@ package consoleBoard;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class ConsoleBoard {
 	private Map<User, ArrayList<Board>> map;
 	private int log;
 	private boolean isExit;
+	
+	private Scanner scanner = new Scanner(System.in);
 	
 	public ConsoleBoard() {
 		map = new HashMap<>();
@@ -27,12 +30,24 @@ public class ConsoleBoard {
 		System.out.println("[0] 종료");
 		System.out.println("---------------");
 	}
-	
+		
 	public void run() {
 		while(!isExit) {
 			printBoard();
-			break;
 		}
+	}
+	
+	private int inputNumber(String message) {
+		int number = -1;
+		
+		try {
+			System.out.println(message + " : ");
+			String input = scanner.next();
+			number = Integer.parseInt(input);
+		} catch (Exception e) {
+			System.err.println("숫자를 입력하세요.");
+		}
+		return number;
 	}
 
 }
