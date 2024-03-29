@@ -40,4 +40,11 @@ public class UserManager {
 		}
 		return new User();
 	}
+	
+	public boolean removeUser(User user) {
+		String id = user.getId();
+		User target = getUserById(id);
+		
+		return list.remove(target);
+	}
 }
