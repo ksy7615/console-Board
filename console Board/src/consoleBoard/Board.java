@@ -8,4 +8,9 @@ public class Board {
 		
 	}
 	
+	public Board(String title, String content) {
+		this.title = title;
+		this.content = content;
+	}
+	
 }
