@@ -3,7 +3,7 @@ package consoleBoard;
 import java.util.ArrayList;
 
 public class UserManager {
-	ArrayList<User> list;
+	private ArrayList<User> list;
 
 	public UserManager() {
 		list = new ArrayList<>();
