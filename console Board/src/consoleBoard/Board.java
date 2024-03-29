@@ -3,6 +3,7 @@ package consoleBoard;
 public class Board {
 	// Board CRUD
 	String title, content;
+	String writerId;
 	
 	public Board() {
 		
@@ -42,5 +43,8 @@ public class Board {
 			return new Board();
 		}
 	}
+	
+	
+
 	
 }
