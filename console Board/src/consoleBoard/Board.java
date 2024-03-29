@@ -4,11 +4,11 @@ public class Board {
 	// Board CRUD
 	String title, content;
 	String writerId;
-	
+
 	public Board() {
-		
+
 	}
-	
+
 	public Board(String title, String content, String writerId) {
 		this.title = title;
 		this.content = content;
@@ -30,22 +30,24 @@ public class Board {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
+
 	public Board clone() {
 		return new Board(this.title, this.content, this.writerId);
 	}
-	
+
 	public Board addPost(String title, String content, String writerId) {
-		if(title != null && content != null) {
-			Board board = new Board(title, content, writerId);
-			return board.clone();
+		if (writerId != null) {
+			if (title != null && content != null) {
+				Board board = new Board(title, content, writerId);
+				return board.clone();
+			} else {
+				System.err.println("제목과 내용을 입력해주세요.");
+				return new Board();
+			}
 		} else {
-			System.err.println("제목을 입력해주세요.");
+			System.err.println("존재하지 않는 ID입니다.");
 			return new Board();
 		}
 	}
-	
-	
 
-	
 }
