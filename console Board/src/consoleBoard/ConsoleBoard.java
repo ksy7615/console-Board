@@ -2,6 +2,7 @@ package consoleBoard;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -9,12 +10,14 @@ public class ConsoleBoard {
 	private Map<User, ArrayList<Board>> map;
 	private int log;
 	private boolean isExit;
+	private List keySet;
 	
 	private Scanner scanner = new Scanner(System.in);
 	
 	public ConsoleBoard() {
 		map = new HashMap<>();
 		log = -1;
+		keySet = new ArrayList(map.keySet());
 	}
 	
 	private void printBoard() {
@@ -32,6 +35,8 @@ public class ConsoleBoard {
 	}
 	
 	private void join() {
+		String id = inputString("id");
+		String password = inputString("password");
 		
 	}
 	
