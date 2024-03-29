@@ -9,9 +9,10 @@ public class Board {
 		
 	}
 	
-	public Board(String title, String content) {
+	public Board(String title, String content, String writerId) {
 		this.title = title;
 		this.content = content;
+		this.writerId = writerId;
 	}
 
 	public String getTitle() {
@@ -31,12 +32,12 @@ public class Board {
 	}
 	
 	public Board clone() {
-		return new Board(this.title, this.content);
+		return new Board(this.title, this.content, this.writerId);
 	}
 	
-	public Board addPost(String title, String content) {
+	public Board addPost(String title, String content, String writerId) {
 		if(title != null && content != null) {
-			Board board = new Board(title, content);
+			Board board = new Board(title, content, writerId);
 			return board.clone();
 		} else {
 			System.err.println("제목을 입력해주세요.");
