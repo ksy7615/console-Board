@@ -47,5 +47,14 @@ public class BoardManager {
 			post.setContent(content);
 		}
 	}
+	
+	public boolean removePost(User user, int index) {
+		if(user.isRight()) {
+			// 삭제할 포스팅 선택
+			Post post = board.get(index);
+			return board.remove(post);
+		}
+		return false;
+	}
 
 }
