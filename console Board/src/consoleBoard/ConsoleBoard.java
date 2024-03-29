@@ -5,7 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ConsoleBoard {
-	Map<User, ArrayList<Board>> map = new HashMap<>();
+	private Map<User, ArrayList<Board>> map = new HashMap<>();
+	private int log;
 	
 	public void run() {
 		
