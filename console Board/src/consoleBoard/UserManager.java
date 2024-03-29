@@ -47,4 +47,8 @@ public class UserManager {
 		
 		return list.remove(target);
 	}
+	
+	public int size() {
+		return list.size();
+	}
 }
