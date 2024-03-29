@@ -8,18 +8,18 @@ import java.util.Scanner;
 
 public class ConsoleBoard {
 	private Map<User, ArrayList<Board>> map;
+	private List keySet;
 	private int log;
 	private boolean isExit;
-	private List keySet;
-	
+
 	private Scanner scanner = new Scanner(System.in);
-	
+
 	public ConsoleBoard() {
 		map = new HashMap<>();
-		log = -1;
 		keySet = new ArrayList(map.keySet());
+		log = -1;
 	}
-	
+
 	private void printBoard() {
 		System.out.println("-----BOARD-----");
 		System.out.println("[1] 회원가입");
@@ -33,15 +33,26 @@ public class ConsoleBoard {
 		System.out.println("[0] 종료");
 		System.out.println("---------------");
 	}
-	
+
 	private void join() {
 		String id = inputString("id");
 		String password = inputString("password");
+
+		for (int i = 0; i < map.size(); i++) {
+			if (id.equals(keySet.get(i))) {
+				System.err.println("중복된 아이디입니다.");
+				return;
+			}
+		}
 		
+		User user = new User(id, password);
+		map.put(user, new ArrayList<Board>());
+		
+		System.out.println("회원가입 완료");
 	}
-	
+
 	private void runBoard(int select) {
-		if(select == 1)
+		if (select == 1)
 			join();
 //		else if(select == 2)
 //			leave();
@@ -57,21 +68,21 @@ public class ConsoleBoard {
 //			modifyPost();
 //		else if(select == 8)
 //			deletePost();
-		else if(select == 0)
+		else if (select == 0)
 			isExit = true;
 	}
-		
+
 	public void run() {
-		while(!isExit) {
+		while (!isExit) {
 			printBoard();
 			int select = inputNumber("선택");
 			runBoard(select);
 		}
 	}
-	
+
 	private int inputNumber(String message) {
 		int number = -1;
-		
+
 		try {
 			System.out.print(message + " : ");
 			String input = scanner.next();
@@ -81,10 +92,10 @@ public class ConsoleBoard {
 		}
 		return number;
 	}
-	
+
 	private String inputString(String message) {
 		System.out.print(message + " : ");
-		
+
 		return scanner.next();
 	}
 
