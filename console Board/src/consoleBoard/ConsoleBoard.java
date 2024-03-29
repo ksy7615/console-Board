@@ -175,7 +175,7 @@ public class ConsoleBoard {
 	private String inputString(String message) {
 		System.out.print(message + " : ");
 
-		return scanner.next();
+		return scanner.nextLine();
 	}
 
 }
