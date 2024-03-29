@@ -7,6 +7,7 @@ import java.util.Map;
 public class ConsoleBoard {
 	private Map<User, ArrayList<Board>> map;
 	private int log;
+	private boolean isExit;
 	
 	public ConsoleBoard() {
 		map = new HashMap<>();
@@ -28,7 +29,10 @@ public class ConsoleBoard {
 	}
 	
 	public void run() {
-		
+		while(!isExit) {
+			printBoard();
+			break;
+		}
 	}
 
 }
