@@ -15,7 +15,7 @@ public class BoardManager {
 			if (title != null && content != null) {
 				Post post = new Post(title, content);
 				board.add(post);
-				return post.clone();
+				return post;
 			}
 		}
 		return new Post();
