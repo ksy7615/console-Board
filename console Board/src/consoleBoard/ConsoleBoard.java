@@ -7,9 +7,12 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class ConsoleBoard {
-	private Map<User, ArrayList<Board>> map;
-	private List keySet;
+	private Map<User, ArrayList<Post>> map;
+	private ArrayList<Post> board;
+//	private List keySet;
+	
 	private UserManager userManager;
+	private BoardManager boardManager;
 	private User user;
 	private boolean isExit;
 
@@ -17,8 +20,10 @@ public class ConsoleBoard {
 
 	public ConsoleBoard() {
 		map = new HashMap<>();
-		keySet = new ArrayList(map.keySet());
-		userManager = new UserManager();
+		board = new ArrayList<>();
+//		keySet = new ArrayList(map.keySet());
+		userManager = UserManager.getInstance();
+		boardManager = BoardManager.getInstance();
 		user = null;
 	}
 
@@ -47,13 +52,13 @@ public class ConsoleBoard {
 			}
 		}
 		User user = userManager.addUser(id, password);
-		map.put(user, new ArrayList<Board>());
+		map.put(user, new ArrayList<Post>());
 
 		System.out.println("회원가입 완료");
 	}
 
 	private void login() {
-		if (user == null) {
+		if (this.user == null) {
 			String id = inputString("id");
 			String password = inputString("password");
 
@@ -74,6 +79,22 @@ public class ConsoleBoard {
 		System.out.println("로그아웃 완료");
 	}
 
+	private void writePost() {
+		if(this.user == null) {
+			System.err.println("회원만 포스팅할 수 있습니다.");
+			return;
+		}
+		String title = inputString("제목");
+		String content = inputString("내용");
+
+		Post post = new Post(title, content, user.getId());
+		board.add(post);
+
+		map.get(this.user).add(post);
+		System.out.println("포스팅이 등록되었습니다.");
+	}
+	
+
 	private void runBoard(int select) {
 		if (select == 1)
 			join();
@@ -85,8 +106,8 @@ public class ConsoleBoard {
 			logout();
 //		else if(select == 5)
 //			viewPost();
-//		else if(select == 6)
-//			writePost();
+		else if (select == 6)
+			writePost();
 //		else if(select == 7)
 //			modifyPost();
 //		else if(select == 8)
@@ -97,7 +118,7 @@ public class ConsoleBoard {
 
 	private void printStatus() {
 		int userSize = map.size();
-		int postSize = keySet.size();
+		int postSize = board.size();
 
 		String message = String.format("User : %d\nPost : %d", userSize, postSize);
 
