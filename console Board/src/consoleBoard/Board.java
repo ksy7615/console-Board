@@ -49,5 +49,15 @@ public class Board {
 			return new Board();
 		}
 	}
+	
+	// 작성자가 쓴 글 보여주기
+	public Board getPost(User user, String writerId) {
+		if(user.getId().equals(writerId)) {
+			Board board = new Board(this.title, this.content, this.writerId);
+			return board;
+		} else {
+			return new Board();
+		}
+	}
 
 }
