@@ -31,9 +31,13 @@ public class ConsoleBoard {
 		System.out.println("---------------");
 	}
 	
+	private void join() {
+		
+	}
+	
 	private void runBoard(int select) {
-//		if(select == 1)
-//			join();
+		if(select == 1)
+			join();
 //		else if(select == 2)
 //			leave();
 //		else if(select == 3)
@@ -48,7 +52,7 @@ public class ConsoleBoard {
 //			modifyPost();
 //		else if(select == 8)
 //			deletePost();
-		if(select == 0)
+		else if(select == 0)
 			isExit = true;
 	}
 		
@@ -56,6 +60,7 @@ public class ConsoleBoard {
 		while(!isExit) {
 			printBoard();
 			int select = inputNumber("선택");
+			runBoard(select);
 		}
 	}
 	
@@ -70,6 +75,12 @@ public class ConsoleBoard {
 			System.err.println("숫자를 입력하세요.");
 		}
 		return number;
+	}
+	
+	private String inputString(String message) {
+		System.out.print(message + " : ");
+		
+		return scanner.next();
 	}
 
 }
