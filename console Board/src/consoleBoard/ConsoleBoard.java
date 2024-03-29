@@ -9,14 +9,17 @@ import java.util.Scanner;
 public class ConsoleBoard {
 	private Map<User, ArrayList<Board>> map;
 	private List keySet;
+	private UserManager userManager;
 	private int log;
 	private boolean isExit;
+	
 
 	private Scanner scanner = new Scanner(System.in);
 
 	public ConsoleBoard() {
 		map = new HashMap<>();
 		keySet = new ArrayList(map.keySet());
+		userManager = new UserManager();
 		log = -1;
 	}
 
@@ -39,13 +42,12 @@ public class ConsoleBoard {
 		String password = inputString("password");
 
 		for (int i = 0; i < map.size(); i++) {
-			if (id.equals(keySet.get(i))) {
+			if (id.equals(userManager.getUser(i).getId())) {
 				System.err.println("중복된 아이디입니다.");
 				return;
 			}
 		}
-		
-		User user = new User(id, password);
+		User user = userManager.addUser(id, password);
 		map.put(user, new ArrayList<Board>());
 		
 		System.out.println("회원가입 완료");
@@ -71,9 +73,19 @@ public class ConsoleBoard {
 		else if (select == 0)
 			isExit = true;
 	}
+	
+	private void printStatus() {
+		int userSize = map.size();
+		int postSize = keySet.size();
+		
+		String message = String.format("User : %d\n Post : %d", userSize, postSize);
+		
+		System.out.println(message);
+	}
 
 	public void run() {
 		while (!isExit) {
+			printStatus();
 			printBoard();
 			int select = inputNumber("선택");
 			runBoard(select);
