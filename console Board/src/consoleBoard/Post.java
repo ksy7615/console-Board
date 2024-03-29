@@ -36,6 +36,10 @@ public class Post {
 		this.content = content;
 	}
 
+	public String getWriterId() {
+		return writerId;
+	}
+
 	public Post clone() {
 		return new Post(this.title, this.content, this.writerId);
 	}
