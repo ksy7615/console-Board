@@ -41,6 +41,11 @@ public class BoardManager {
 		}
 	}
 	
-	
+	public void setContentPost(User user, int index, String content) {
+		if(user.isRight()) {
+			Post post = board.get(index);
+			post.setContent(content);
+		}
+	}
 
 }
