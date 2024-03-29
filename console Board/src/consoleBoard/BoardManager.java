@@ -31,6 +31,10 @@ public class BoardManager {
 		return new Post();
 	}
 	
+	public int size() {
+		return board.size();
+	}
+	
 	// 자기 글만 수정을 할 수 있어야함
 	public void setTitlePost(User user, int index, String title) {
 		// 권한이 있으면
