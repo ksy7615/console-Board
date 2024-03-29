@@ -43,5 +43,16 @@ public class Post {
 	public Post clone() {
 		return new Post(this.title, this.content, this.writerId);
 	}
+	
+	@Override
+	public String toString() {
+		String message = "";
+		
+		message += String.format("제목 : %s", this.title);
+		message += "\n";
+		message += String.format("내용 : %s", this.content);
+		
+		return message;
+	}
 
 }
