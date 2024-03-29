@@ -10,9 +10,8 @@ public class ConsoleBoard {
 	private Map<User, ArrayList<Board>> map;
 	private List keySet;
 	private UserManager userManager;
-	private int log;
+	private User user;
 	private boolean isExit;
-	
 
 	private Scanner scanner = new Scanner(System.in);
 
@@ -20,7 +19,7 @@ public class ConsoleBoard {
 		map = new HashMap<>();
 		keySet = new ArrayList(map.keySet());
 		userManager = new UserManager();
-		log = -1;
+		user = new User();
 	}
 
 	private void printBoard() {
@@ -49,8 +48,21 @@ public class ConsoleBoard {
 		}
 		User user = userManager.addUser(id, password);
 		map.put(user, new ArrayList<Board>());
-		
+
 		System.out.println("회원가입 완료");
+	}
+
+	private void login() {
+		String id = inputString("id");
+		String password = inputString("password");
+		
+		if(!userManager.isValidLogin(id, password)) {
+			System.err.println("회원정보를 다시 확인하세요.");
+			return;
+		}
+		
+		this.user = userManager.getUserById(id);
+		System.out.println(String.format("%s님 로그인 완료", id));
 	}
 
 	private void runBoard(int select) {
@@ -58,8 +70,8 @@ public class ConsoleBoard {
 			join();
 //		else if(select == 2)
 //			leave();
-//		else if(select == 3)
-//			login();
+		else if (select == 3)
+			login();
 //		else if(select == 4)
 //			logout();
 //		else if(select == 5)
@@ -73,13 +85,13 @@ public class ConsoleBoard {
 		else if (select == 0)
 			isExit = true;
 	}
-	
+
 	private void printStatus() {
 		int userSize = map.size();
 		int postSize = keySet.size();
-		
-		String message = String.format("User : %d\n Post : %d", userSize, postSize);
-		
+
+		String message = String.format("User : %d\nPost : %d", userSize, postSize);
+
 		System.out.println(message);
 	}
 
