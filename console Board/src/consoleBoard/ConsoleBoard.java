@@ -19,7 +19,7 @@ public class ConsoleBoard {
 		map = new HashMap<>();
 		keySet = new ArrayList(map.keySet());
 		userManager = new UserManager();
-		user = new User();
+		user = null;
 	}
 
 	private void printBoard() {
@@ -53,16 +53,25 @@ public class ConsoleBoard {
 	}
 
 	private void login() {
-		String id = inputString("id");
-		String password = inputString("password");
-		
-		if(!userManager.isValidLogin(id, password)) {
-			System.err.println("회원정보를 다시 확인하세요.");
+		if (user == null) {
+			String id = inputString("id");
+			String password = inputString("password");
+
+			if (!userManager.isValidLogin(id, password)) {
+				System.err.println("회원정보를 다시 확인하세요.");
+				return;
+			}
+			this.user = userManager.getUserById(id);
+			System.out.println(String.format("%s님 로그인 완료", id));
+		} else {
+			System.err.println("이미 로그인 된 상태입니다.");
 			return;
 		}
-		
-		this.user = userManager.getUserById(id);
-		System.out.println(String.format("%s님 로그인 완료", id));
+	}
+
+	private void logout() {
+		this.user = null;
+		System.out.println("로그아웃 완료");
 	}
 
 	private void runBoard(int select) {
@@ -72,8 +81,8 @@ public class ConsoleBoard {
 //			leave();
 		else if (select == 3)
 			login();
-//		else if(select == 4)
-//			logout();
+		else if (select == 4)
+			logout();
 //		else if(select == 5)
 //			viewPost();
 //		else if(select == 6)
