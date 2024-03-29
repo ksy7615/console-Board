@@ -164,7 +164,7 @@ public class ConsoleBoard {
 
 		try {
 			System.out.print(message + " : ");
-			String input = scanner.next();
+			String input = scanner.nextLine();
 			number = Integer.parseInt(input);
 		} catch (Exception e) {
 			System.err.println("숫자를 입력하세요.");
@@ -174,7 +174,6 @@ public class ConsoleBoard {
 
 	private String inputString(String message) {
 		System.out.print(message + " : ");
-
 		return scanner.nextLine();
 	}
 
