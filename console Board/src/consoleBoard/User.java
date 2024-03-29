@@ -2,7 +2,7 @@ package consoleBoard;
 
 public class User {
 	private String id, password;
-	private boolean isRight;
+	private static boolean isRight;
 	
 	public User() {
 		
