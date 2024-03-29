@@ -41,6 +41,15 @@ public class UserManager {
 		return new User();
 	}
 	
+	public boolean isValidLogin(String id, String password) {
+		for(User user : list) {
+			if(user.getId().equals(id) && user.getPassword().equals(password)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public boolean removeUser(User user) {
 		String id = user.getId();
 		User target = getUserById(id);
