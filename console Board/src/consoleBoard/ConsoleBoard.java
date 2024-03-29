@@ -101,6 +101,11 @@ public class ConsoleBoard {
 		}
 		System.out.println("===============");
 	}
+	
+	private void printModifyPostMenu() {
+		System.out.println("[1] 제목수정");
+		System.out.println("[2] 내용수정");
+	}
 
 	private void runBoard(int select) {
 		if (select == 1)
@@ -115,8 +120,10 @@ public class ConsoleBoard {
 //			viewPostAll();
 		else if (select == 6)
 			writePost();
-//		else if(select == 7)
-//			modifyPost();
+		else if(select == 7) {
+			printModifyPostMenu();
+//			runModifyPostMenu(inputNumber("선택"));
+		}
 //		else if(select == 8)
 //			deletePost();
 		else if (select == 0)
