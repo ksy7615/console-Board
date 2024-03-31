@@ -173,6 +173,28 @@ public class ConsoleBoard {
 		else if (select == 2)
 			modifyContent();
 	}
+	
+	private void deletePost() {
+		if (this.user != null) {
+			viewMyPost();
+			int index = inputNumber("삭제할 글") - 1;
+			int size = map.get(user).size();
+
+			if (index < 0 || index >= size) {
+				System.err.println("유효한 값이 아닙니다.");
+				return;
+			}
+
+			boardManager.removePost(this.user, index);
+			map.get(this.user).remove(index);
+			board.remove(index);
+			
+			System.out.println("포스팅 삭제 완료");
+		} else {
+			System.err.println("로그인 후 이용 해주세요.");
+			return;
+		}
+	}
 
 	private void runBoard(int select) {
 		if (select == 1)
@@ -191,8 +213,8 @@ public class ConsoleBoard {
 			printModifyPostMenu();
 			runModifyPostMenu(inputNumber("선택"));
 		}
-//		else if (select == 8)
-//			deletePost();
+		else if (select == 8)
+			deletePost();
 		else if (select == 0)
 			isExit = true;
 	}
