@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class ConsoleBoard {
 	private Map<User, ArrayList<Post>> map;
 	private ArrayList<Post> board;
-//	private List keySet;
+//	private List keySet = new ArrayList(map.keySet());
 
 	private UserManager userManager;
 	private BoardManager boardManager;
@@ -21,7 +21,6 @@ public class ConsoleBoard {
 	public ConsoleBoard() {
 		map = new HashMap<>();
 		board = new ArrayList<>();
-//		keySet = new ArrayList(map.keySet());
 		userManager = UserManager.getInstance();
 		boardManager = BoardManager.getInstance();
 		user = null;
@@ -102,6 +101,17 @@ public class ConsoleBoard {
 		System.out.println("===============");
 	}
 
+	private void viewAllPosts() {
+		System.out.println("===============");
+		for (User user : map.keySet()) {
+			ArrayList<Post> userPosts = map.get(user);
+			for (int i = 0; i < userPosts.size(); i++) {
+				System.out.println(String.format("%d) 작성자 : %s\n%s", i + 1, user.getId(), userPosts.get(i)));
+			}
+		}
+		System.out.println("===============");
+	}
+
 	private void printModifyPostMenu() {
 		System.out.println("[1] 제목수정");
 		System.out.println("[2] 내용수정");
@@ -119,9 +129,9 @@ public class ConsoleBoard {
 			}
 
 			String title = inputString("새로운 제목");
-			
+
 			Post post = map.get(this.user).get(index);
-			
+
 			post.setTitle(title);
 			map.get(this.user).set(index, post);
 
@@ -131,7 +141,7 @@ public class ConsoleBoard {
 			return;
 		}
 	}
-	
+
 	private void modifyContent() {
 		if (this.user != null) {
 			viewMyPost();
@@ -144,9 +154,9 @@ public class ConsoleBoard {
 			}
 
 			String content = inputString("새로운 내용");
-			
+
 			Post post = map.get(this.user).get(index);
-			
+
 			post.setContent(content);
 			map.get(this.user).set(index, post);
 
@@ -160,7 +170,7 @@ public class ConsoleBoard {
 	private void runModifyPostMenu(int select) {
 		if (select == 1)
 			modifyTitle();
-		else if(select == 2)
+		else if (select == 2)
 			modifyContent();
 	}
 
@@ -174,8 +184,7 @@ public class ConsoleBoard {
 		else if (select == 4)
 			logout();
 		else if (select == 5)
-//			viewPostAll();
-			viewMyPost();
+			viewAllPosts();
 		else if (select == 6)
 			writePost();
 		else if (select == 7) {
