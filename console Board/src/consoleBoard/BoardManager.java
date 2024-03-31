@@ -7,9 +7,9 @@ public class BoardManager {
 
 	private BoardManager() {
 	}
-	
+
 	private static BoardManager instance = new BoardManager();
-	
+
 	public static BoardManager getInstance() {
 		return instance;
 	}
@@ -28,42 +28,45 @@ public class BoardManager {
 
 	// 작성자가 쓴 글 보여주기
 	public Post getPost(User user) {
-		for(Post post : board) {
-			if(post.getWriterId().equals(user.getId())) {
+		for (Post post : board) {
+			if (post.getWriterId().equals(user.getId())) {
 				return post;
 			}
 		}
 		return new Post();
 	}
-	
+
 	public int size() {
 		return board.size();
 	}
-	
+
 	// 자기 글만 수정을 할 수 있어야함
 	public void setTitlePost(User user, int index, String title) {
 		// 권한이 있으면
-		if(user.isRight()) {
+		if (user.isRight()) {
 			// 쓴 글중에 수정할 걸 선택해서
 			Post post = board.get(index);
 			post.setTitle(title);
+			board.set(index, post);
 		}
 	}
-	
+
 	public void setContentPost(User user, int index, String content) {
-		if(user.isRight()) {
+		if (user.isRight()) {
 			Post post = board.get(index);
 			post.setContent(content);
 		}
 	}
-	
+
 	public boolean removePost(User user, int index) {
-		if(user.isRight()) {
-			// 삭제할 포스팅 선택
-			Post post = board.get(index);
-			return board.remove(post);
+		if (index >= 0 && index < board.size()) {
+		// 삭제할 포스팅 선택
+		Post post = board.get(index);
+		return board.remove(post);
+		} else {
+			System.err.println("유효한 값이 아닙니다.");
+			return false;
 		}
-		return false;
 	}
 
 }
