@@ -93,7 +93,7 @@ public class ConsoleBoard {
 		map.get(this.user).add(post);
 		System.out.println("포스팅이 등록되었습니다.");
 	}
-	
+
 	private void viewMyPost() {
 		System.out.println("===============");
 		for (int i = 0; i < map.get(user).size(); i++) {
@@ -101,18 +101,39 @@ public class ConsoleBoard {
 		}
 		System.out.println("===============");
 	}
-	
+
 	private void printModifyPostMenu() {
 		System.out.println("[1] 제목수정");
 		System.out.println("[2] 내용수정");
 	}
-	
+
 	private void modifyTitle() {
-		
+		if (this.user != null) {
+			viewMyPost();
+			int index = inputNumber("제목 수정할 글") - 1;
+			int size = map.get(user).size();
+
+			if (index < 0 || index >= size) {
+				System.err.println("유효한 값이 아닙니다.");
+				return;
+			}
+
+			String title = inputString("새로운 제목");
+			
+			Post post = map.get(this.user).get(index);
+			
+			post.setTitle(title);
+			map.get(this.user).set(index, post);
+
+			System.out.println("제목 수정 완료");
+		} else {
+			System.err.println("로그인 후 이용 해주세요.");
+			return;
+		}
 	}
-	
+
 	private void runModifyPostMenu(int select) {
-		if(select == 1)
+		if (select == 1)
 			modifyTitle();
 //		else if(select == 2)
 //			modifyContent();
@@ -127,15 +148,16 @@ public class ConsoleBoard {
 			login();
 		else if (select == 4)
 			logout();
-//		else if (select == 5)
+		else if (select == 5)
 //			viewPostAll();
+			viewMyPost();
 		else if (select == 6)
 			writePost();
-		else if(select == 7) {
+		else if (select == 7) {
 			printModifyPostMenu();
 			runModifyPostMenu(inputNumber("선택"));
 		}
-//		else if(select == 8)
+//		else if (select == 8)
 //			deletePost();
 		else if (select == 0)
 			isExit = true;
