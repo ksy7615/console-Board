@@ -131,12 +131,37 @@ public class ConsoleBoard {
 			return;
 		}
 	}
+	
+	private void modifyContent() {
+		if (this.user != null) {
+			viewMyPost();
+			int index = inputNumber("내용 수정할 글") - 1;
+			int size = map.get(user).size();
+
+			if (index < 0 || index >= size) {
+				System.err.println("유효한 값이 아닙니다.");
+				return;
+			}
+
+			String content = inputString("새로운 내용");
+			
+			Post post = map.get(this.user).get(index);
+			
+			post.setContent(content);
+			map.get(this.user).set(index, post);
+
+			System.out.println("내용 수정 완료");
+		} else {
+			System.err.println("로그인 후 이용 해주세요.");
+			return;
+		}
+	}
 
 	private void runModifyPostMenu(int select) {
 		if (select == 1)
 			modifyTitle();
-//		else if(select == 2)
-//			modifyContent();
+		else if(select == 2)
+			modifyContent();
 	}
 
 	private void runBoard(int select) {
