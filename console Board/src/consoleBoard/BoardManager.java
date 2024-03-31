@@ -64,7 +64,6 @@ public class BoardManager {
 		Post post = board.get(index);
 		return board.remove(post);
 		} else {
-			System.err.println("유효한 값이 아닙니다.");
 			return false;
 		}
 	}
