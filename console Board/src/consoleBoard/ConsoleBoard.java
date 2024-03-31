@@ -55,6 +55,28 @@ public class ConsoleBoard {
 
 		System.out.println("회원가입 완료");
 	}
+	
+	private void leave() {
+		if (this.user != null) {
+			String password = inputString("password 재확인");
+			
+			if(userManager.isValidLogin(this.user.getId(), password)) {
+				userManager.removeUser(this.user);
+				boardManager.removeUserPostsAll(this.user);
+				
+				map.remove(this.user);
+				this.user = null;
+				
+				System.out.println("탈퇴 완료");
+			} else {
+				System.err.println("비밀번호가 일치하지 않습니다.");
+				return;
+			}
+		} else {
+			System.err.println("로그인 후 이용 해주세요.");
+			return;
+		}
+	}
 
 	private void login() {
 		if (this.user == null) {
@@ -199,8 +221,8 @@ public class ConsoleBoard {
 	private void runBoard(int select) {
 		if (select == 1)
 			join();
-//		else if(select == 2)
-//			leave();
+		else if(select == 2)
+			leave();
 		else if (select == 3)
 			login();
 		else if (select == 4)
