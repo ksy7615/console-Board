@@ -67,5 +67,14 @@ public class BoardManager {
 			return false;
 		}
 	}
+	
+	// 탈퇴할 때 지우는 용
+	public void removeUserPostsAll(User user) {
+	    for (int i = 0; i < board.size(); i++) {
+	        if (board.get(i).getWriterId().equals(user.getId())) {
+	            board.remove(i);
+	        }
+	    }
+	}
 
 }
