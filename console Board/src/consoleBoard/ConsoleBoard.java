@@ -263,7 +263,7 @@ public class ConsoleBoard {
 	}
 	
 	private void printAdminMenu() {
-		System.out.println("[1] 유저 강제탈퇴");
+		System.out.println("[1] 유저 추방");
 		System.out.println("[2] 게시글 삭제");
 	}
 
