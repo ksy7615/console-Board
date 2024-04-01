@@ -202,24 +202,20 @@ public class ConsoleBoard {
 
 	private void deletePost() {
 		if (this.user != null) {
-			if (user.isRight()) {
-				viewMyPost();
-				int index = inputNumber("삭제할 글") - 1;
-				int size = map.get(user).size();
+			viewMyPost();
+			int index = inputNumber("삭제할 글") - 1;
+			int size = map.get(user).size();
 
-				if (index < 0 || index >= size) {
-					System.err.println("유효한 값이 아닙니다.");
-					return;
-				}
-
-				boardManager.removePost(this.user, index);
-				map.get(this.user).remove(index);
-				board.remove(index);
-
-				System.out.println("포스팅 삭제 완료");
-			} else {
-				System.out.println("해당 글에 권한이 존재하지 않습니다.");
+			if (index < 0 || index >= size) {
+				System.err.println("유효한 값이 아닙니다.");
+				return;
 			}
+
+			boardManager.removePost(this.user, index);
+			map.get(this.user).remove(index);
+			board.remove(index);
+
+			System.out.println("포스팅 삭제 완료");
 		} else {
 			System.err.println("로그인 후 이용 해주세요.");
 			return;
