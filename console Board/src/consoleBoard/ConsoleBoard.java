@@ -119,6 +119,13 @@ public class ConsoleBoard {
 		map.get(this.user).add(post);
 		System.out.println("포스팅이 등록되었습니다.");
 	}
+	
+	private void runWritePostMenu(int select) {
+		if(select == 1)
+			writePostPublic();
+//		else if(select == 2)
+//			writePostAnonymous();
+	}
 
 	private void viewMyPost() {
 		System.out.println("===============");
@@ -236,7 +243,7 @@ public class ConsoleBoard {
 			viewAllPosts();
 		else if (select == 6) {
 			printWritePostMenu();
-//			runWritePostMenu(inputNumber("선택"));
+			runWritePostMenu(inputNumber("선택"));
 		}
 		else if (select == 7) {
 			printModifyPostMenu();
