@@ -22,7 +22,8 @@
 
 > Class Diagram(UML)
 
-![diagram](https://github.com/ksy7615/console-Board/blob/main/images/ConsoleBoard.jpg)
+![diagram](https://github.com/ksy7615/console-Board/blob/main/images/ConsoleBoard.jpg) <br>
+<br>
 
 > Demo
 
