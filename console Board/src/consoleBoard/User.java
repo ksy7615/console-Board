@@ -17,6 +17,11 @@ public class User implements Anonymous {
 	public String getId() {
 		return this.id;
 	}
+	
+	// 익명용 setId
+	public void setId() {
+		this.id = "*****";
+	}
 
 	public String getPassword() {
 		return this.password;
