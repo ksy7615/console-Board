@@ -280,9 +280,9 @@ public class ConsoleBoard {
 				return;
 			}
 			
-			
-			
-
+			boardManager.removePost(index);
+			map.get(userManager.getUser(index)).remove(index);
+			board.remove(index);
 		} else {
 			System.err.println("관리자만 사용할 수 있는 기능입니다.");
 			return;
