@@ -1,5 +1,0 @@
-package consoleBoard;
-
-interface Anonymous {
-
-}
