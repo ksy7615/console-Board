@@ -27,7 +27,7 @@ public class ConsoleBoard {
 		boardManager = BoardManager.getInstance();
 		
 		user = null;
-		anonymousUser = new AnonymousUser();
+		anonymousUser = null;
 	}
 
 	private void printBoard() {
@@ -125,14 +125,34 @@ public class ConsoleBoard {
 	}
 	
 	private void writePostAnonymous() {
-		
+		if (this.user == null) {
+			System.err.println("회원만 포스팅할 수 있습니다.");
+			return;
+		}
+		// 모든 유저가 익명으로 글 쓸 권한이 존재
+		if(this.user instanceof Anonymous) {
+			this.user.setAnonyMode();
+			
+			String title = inputString("제목");
+			String content = inputString("내용");
+			
+			if(this.user.anonyMode()) {
+				this.user.setId("ㅇㅇ");
+				
+				Post post = new Post(title, content, user.getId());
+				board.add(post);
+				
+				map.get(this.user).add(post);
+			}
+			System.out.println("포스팅이 등록되었습니다.");
+		}
 	}
 	
 	private void runWritePostMenu(int select) {
 		if(select == 1)
 			writePostPublic();
-//		else if(select == 2)
-//			writePostAnonymous();
+		else if(select == 2)
+			writePostAnonymous();
 	}
 
 	private void viewMyPost() {
