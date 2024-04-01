@@ -133,11 +133,7 @@ public class ConsoleBoard {
 		for (User user : map.keySet()) {
 			ArrayList<Post> userPosts = map.get(user);
 			for (int i = 0; i < userPosts.size(); i++) {
-				if (user.anonyMode()) {
-					System.out.println(String.format("%d) 작성자 : %s\n%s", i + 1, "*****", userPosts.get(i)));
-				} else {
-					System.out.println(String.format("%d) 작성자 : %s\n%s", i + 1, user.getId(), userPosts.get(i)));
-				}
+				System.out.println(String.format("%d) 작성자 : %s\n%s", i + 1, user.getId(), userPosts.get(i)));
 			}
 		}
 		System.out.println("===============");
@@ -237,18 +233,18 @@ public class ConsoleBoard {
 			printAllUsers();
 
 			int index = inputNumber("추방할 회원 번호");
-			
-			if(index == 0) {
+
+			if (index == 0) {
 				System.err.println("관리자는 탈퇴할 수 없습니다.");
 				return;
 			}
-			
+
 			// 관리자 본인도 탈퇴할 수 없음
-			if(index < 0 || index > map.size()) {
+			if (index < 0 || index > map.size()) {
 				System.err.println("유효한 값이 아닙니다.");
 				return;
 			}
-			
+
 			User target = userManager.getUser(index);
 			userManager.removeUser(target);
 			boardManager.removeUserPostsAll(target);
@@ -264,7 +260,7 @@ public class ConsoleBoard {
 	private void printAllUsers() {
 		System.out.println();
 		for (int i = 0; i < map.size(); i++) {
-			System.out.println(String.format("%d) %s\n", i, user.getId()));
+			System.out.println(String.format("%d) %s\n", i, userManager.getUser(i).getId()));
 		}
 	}
 
