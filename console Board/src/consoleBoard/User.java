@@ -1,9 +1,8 @@
 package consoleBoard;
 
-public class User implements Anonymous {
+public class User {
 	private String id, password;
 	private static boolean isRight;
-	private static boolean anonyMode;
 	
 	public User() {
 		
@@ -33,14 +32,6 @@ public class User implements Anonymous {
 
 	public void setRight() {
 		this.isRight = !isRight;
-	}
-	
-	public boolean anonyMode() {
-		return this.anonyMode;
-	}
-	
-	public void setAnonyMode() {
-		this.anonyMode = !anonyMode;
 	}
 	
 	public User clone() {
