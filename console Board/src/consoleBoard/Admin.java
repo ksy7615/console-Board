@@ -1,7 +1,7 @@
 package consoleBoard;
 
 public class Admin extends User {
-	public Admin() {
-		super("admin", "admin1234");
+	public Admin(String adminId, String adminPassword) {
+		super(adminId, adminPassword);
 	}
 }
