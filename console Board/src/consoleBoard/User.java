@@ -1,6 +1,6 @@
 package consoleBoard;
 
-public class User {
+public class User implements Anonymous {
 	private String id, password;
 	private static boolean isRight;
 	
