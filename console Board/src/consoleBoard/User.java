@@ -16,6 +16,11 @@ public class User implements Anonymous {
 	public String getId() {
 		return this.id;
 	}
+	
+	// 익명에서 이름 바꿀 용
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getPassword() {
 		return this.password;
