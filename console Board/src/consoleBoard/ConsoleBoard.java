@@ -271,7 +271,12 @@ public class ConsoleBoard {
 		if (this.user.getId().equals("admin")) {
 			printAllUsers();
 
-			int index = inputNumber("추방할 회원 번호");
+			int index = inputNumber("추방할 회원 번호") -1;
+			
+			// 관리자 본인도 탈퇴할 수 없음
+			if(index <= 0 || index >= map.size()) {
+				System.err.println("유효한 값이 아닙니다.");
+			}
 
 		} else {
 			System.err.println("관리자만 사용할 수 있는 기능입니다.");
@@ -281,7 +286,7 @@ public class ConsoleBoard {
 
 	private void printAllUsers() {
 		System.out.println();
-		for (int i = 1; i < map.size(); i++) {
+		for (int i = 0; i < map.size(); i++) {
 			System.out.println(String.format("%d) %s\n", i, map.keySet()));
 		}
 	}
