@@ -266,6 +266,17 @@ public class ConsoleBoard {
 		System.out.println("[1] 유저 추방");
 		System.out.println("[2] 게시글 삭제");
 	}
+	
+	private void deportUser() {
+		
+	}
+	
+	private void runAdminMenu(int select) {
+		if(select == 1)
+			deportUser();
+//		else if(select == 2)
+//			deletePostByAdmin();
+	}
 
 	private void runBoard(int select) {
 		if (select == 1)
@@ -288,7 +299,7 @@ public class ConsoleBoard {
 			deletePost();
 		else if (select == 9) {
 			printAdminMenu();
-//			runAdminMenu(inputNumber("선택"));
+			runAdminMenu(inputNumber("선택"));
 		}
 		else if (select == 0)
 			isExit = true;
