@@ -99,8 +99,13 @@ public class ConsoleBoard {
 		this.user = null;
 		System.out.println("로그아웃 완료");
 	}
+	
+	private void printWritePostMenu() {
+		System.out.println("[1] 공개 글쓰기");
+		System.out.println("[2] 익명 글쓰기");
+	}
 
-	private void writePost() {
+	private void writePostPublic() {
 		if (this.user == null) {
 			System.err.println("회원만 포스팅할 수 있습니다.");
 			return;
@@ -229,8 +234,10 @@ public class ConsoleBoard {
 			logout();
 		else if (select == 5)
 			viewAllPosts();
-		else if (select == 6)
-			writePost();
+		else if (select == 6) {
+			printWritePostMenu();
+//			runWritePostMenu(inputNumber("선택"));
+		}
 		else if (select == 7) {
 			printModifyPostMenu();
 			runModifyPostMenu(inputNumber("선택"));
