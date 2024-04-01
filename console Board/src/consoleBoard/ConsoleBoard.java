@@ -14,6 +14,8 @@ public class ConsoleBoard {
 	private UserManager userManager;
 	private BoardManager boardManager;
 	private User user;
+	
+	private AnonymousUser anonymousUser;
 	private boolean isExit;
 
 	private Scanner scanner = new Scanner(System.in);
@@ -23,7 +25,9 @@ public class ConsoleBoard {
 		board = new ArrayList<>();
 		userManager = UserManager.getInstance();
 		boardManager = BoardManager.getInstance();
+		
 		user = null;
+		anonymousUser = new AnonymousUser();
 	}
 
 	private void printBoard() {
@@ -118,6 +122,10 @@ public class ConsoleBoard {
 
 		map.get(this.user).add(post);
 		System.out.println("포스팅이 등록되었습니다.");
+	}
+	
+	private void writePostAnonymous() {
+		
 	}
 	
 	private void runWritePostMenu(int select) {
