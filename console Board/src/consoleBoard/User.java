@@ -30,6 +30,14 @@ public class User implements Anonymous {
 		this.isRight = !isRight;
 	}
 	
+	public boolean anonyMode() {
+		return this.anonyMode;
+	}
+	
+	public void setAnonyMode() {
+		this.anonyMode = !anonyMode;
+	}
+	
 	public User clone() {
 		return new User(this.id, this.password);
 	}
