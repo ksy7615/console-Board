@@ -40,6 +40,7 @@ public class ConsoleBoard {
 		System.out.println("[6] 게시글 작성");
 		System.out.println("[7] 게시글 수정");
 		System.out.println("[8] 게시글 삭제");
+		System.out.println("[9] 관리자");
 		System.out.println("[0] 종료");
 		System.out.println("---------------");
 	}
@@ -280,6 +281,10 @@ public class ConsoleBoard {
 			runModifyPostMenu(inputNumber("선택"));
 		} else if (select == 8)
 			deletePost();
+		else if (select == 9) {
+//			printAdminMenu();
+//			runAdminMenu(inputNumber("선택"));
+		}
 		else if (select == 0)
 			isExit = true;
 	}
