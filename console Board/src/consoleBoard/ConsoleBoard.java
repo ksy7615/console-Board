@@ -13,6 +13,7 @@ public class ConsoleBoard {
 
 	private UserManager userManager;
 	private BoardManager boardManager;
+	
 	private User user;
 	private boolean isExit;
 
@@ -23,7 +24,9 @@ public class ConsoleBoard {
 		board = new ArrayList<>();
 		userManager = UserManager.getInstance();
 		boardManager = BoardManager.getInstance();
-
+		
+		// 관리자 처음부터 넣어주고 시작
+		map.put(userManager.addUser("admin", "admin1234"), new ArrayList<Post>());
 		user = null;
 	}
 
