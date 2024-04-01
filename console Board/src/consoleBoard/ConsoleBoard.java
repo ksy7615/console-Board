@@ -2,7 +2,6 @@ package consoleBoard;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -117,7 +116,6 @@ public class ConsoleBoard {
 		board.add(post);
 
 		map.get(this.user).add(post);
-		this.user.setRight();
 		System.out.println("포스팅이 등록되었습니다.");
 	}
 
@@ -204,20 +202,24 @@ public class ConsoleBoard {
 
 	private void deletePost() {
 		if (this.user != null) {
-			viewMyPost();
-			int index = inputNumber("삭제할 글") - 1;
-			int size = map.get(user).size();
+			if (user.isRight()) {
+				viewMyPost();
+				int index = inputNumber("삭제할 글") - 1;
+				int size = map.get(user).size();
 
-			if (index < 0 || index >= size) {
-				System.err.println("유효한 값이 아닙니다.");
-				return;
+				if (index < 0 || index >= size) {
+					System.err.println("유효한 값이 아닙니다.");
+					return;
+				}
+
+				boardManager.removePost(this.user, index);
+				map.get(this.user).remove(index);
+				board.remove(index);
+
+				System.out.println("포스팅 삭제 완료");
+			} else {
+				System.out.println("해당 글에 권한이 존재하지 않습니다.");
 			}
-
-			boardManager.removePost(this.user, index);
-			map.get(this.user).remove(index);
-			board.remove(index);
-
-			System.out.println("포스팅 삭제 완료");
 		} else {
 			System.err.println("로그인 후 이용 해주세요.");
 			return;
@@ -268,7 +270,7 @@ public class ConsoleBoard {
 	private void deletePostByAdmin() {
 		if (this.user.getId().equals("admin")) {
 			viewAllPosts();
-			
+
 		} else {
 			System.err.println("관리자만 사용할 수 있는 기능입니다.");
 			return;
