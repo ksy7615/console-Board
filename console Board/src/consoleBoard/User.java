@@ -3,6 +3,7 @@ package consoleBoard;
 public class User implements Anonymous {
 	private String id, password;
 	private static boolean isRight;
+	private static boolean anonyMode;
 	
 	public User() {
 		
@@ -15,11 +16,6 @@ public class User implements Anonymous {
 	
 	public String getId() {
 		return this.id;
-	}
-	
-	// 익명에서 이름 바꿀 용
-	public void setId(String id) {
-		this.id = id;
 	}
 
 	public String getPassword() {
