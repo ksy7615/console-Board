@@ -233,13 +233,13 @@ public class ConsoleBoard {
 			printAllUsers();
 
 			int index = inputNumber("추방할 회원 번호");
-
+			
+			// 관리자 본인도 탈퇴할 수 없음
 			if (index == 0) {
 				System.err.println("관리자는 탈퇴할 수 없습니다.");
 				return;
 			}
-
-			// 관리자 본인도 탈퇴할 수 없음
+			
 			if (index < 0 || index > map.size()) {
 				System.err.println("유효한 값이 아닙니다.");
 				return;
