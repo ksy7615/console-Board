@@ -16,11 +16,6 @@ public class User {
 	public String getId() {
 		return this.id;
 	}
-	
-	// 익명용 setId >> 다시 바꿔놓을 수 있도록 . .
-	public void setId(String id) {
-		this.id = id;
-	}
 
 	public String getPassword() {
 		return this.password;
