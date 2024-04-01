@@ -1,0 +1,5 @@
+package consoleBoard;
+
+interface Anonymous {
+
+}
