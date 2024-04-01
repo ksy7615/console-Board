@@ -1,5 +1,8 @@
 package consoleBoard;
 
-public class AnonymousUser implements Anonymous {
-
+abstract class AnonymousUser extends User implements Anonymous {
+	
+	public AnonymousUser(String id, String password) {
+		super(id, password);
+	}
 }
