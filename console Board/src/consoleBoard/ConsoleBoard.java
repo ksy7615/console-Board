@@ -8,7 +8,6 @@ import java.util.Scanner;
 public class ConsoleBoard {
 	private Map<User, ArrayList<Post>> map;
 	private ArrayList<Post> board;
-//	private List keySet = new ArrayList(map.keySet());
 
 	private UserManager userManager;
 	private BoardManager boardManager;
