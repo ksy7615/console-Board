@@ -117,6 +117,7 @@ public class ConsoleBoard {
 		board.add(post);
 
 		map.get(this.user).add(post);
+		this.user.setRight();
 		System.out.println("포스팅이 등록되었습니다.");
 	}
 
@@ -233,13 +234,13 @@ public class ConsoleBoard {
 			printAllUsers();
 
 			int index = inputNumber("추방할 회원 번호");
-			
+
 			// 관리자 본인도 탈퇴할 수 없음
 			if (index == 0) {
 				System.err.println("관리자는 탈퇴할 수 없습니다.");
 				return;
 			}
-			
+
 			if (index < 0 || index > map.size()) {
 				System.err.println("유효한 값이 아닙니다.");
 				return;
@@ -264,11 +265,21 @@ public class ConsoleBoard {
 		}
 	}
 
+	private void deletePostByAdmin() {
+		if (this.user.getId().equals("admin")) {
+			viewAllPosts();
+			
+		} else {
+			System.err.println("관리자만 사용할 수 있는 기능입니다.");
+			return;
+		}
+	}
+
 	private void runAdminMenu(int select) {
 		if (select == 1)
 			deportUser();
-//		else if(select == 2)
-//			deletePostByAdmin();
+		else if (select == 2)
+			deletePostByAdmin();
 	}
 
 	private void runBoard(int select) {
