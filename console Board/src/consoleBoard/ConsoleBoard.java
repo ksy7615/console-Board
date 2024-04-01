@@ -261,6 +261,11 @@ public class ConsoleBoard {
 			return;
 		}
 	}
+	
+	private void printAdminMenu() {
+		System.out.println("[1] 유저 강제탈퇴");
+		System.out.println("[2] 게시글 삭제");
+	}
 
 	private void runBoard(int select) {
 		if (select == 1)
@@ -282,7 +287,7 @@ public class ConsoleBoard {
 		} else if (select == 8)
 			deletePost();
 		else if (select == 9) {
-//			printAdminMenu();
+			printAdminMenu();
 //			runAdminMenu(inputNumber("선택"));
 		}
 		else if (select == 0)
