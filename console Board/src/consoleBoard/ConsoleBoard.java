@@ -105,11 +105,6 @@ public class ConsoleBoard {
 		System.out.println("로그아웃 완료");
 	}
 
-	private void printWritePostMenu() {
-		System.out.println("[1] 공개 글쓰기");
-		System.out.println("[2] 익명 글쓰기");
-	}
-
 	private void writePostPublic() {
 		if (this.user == null) {
 			System.err.println("회원만 포스팅할 수 있습니다.");
@@ -123,36 +118,6 @@ public class ConsoleBoard {
 
 		map.get(this.user).add(post);
 		System.out.println("포스팅이 등록되었습니다.");
-	}
-
-	private void writePostAnonymous() {
-		if (this.user == null) {
-			System.err.println("회원만 포스팅할 수 있습니다.");
-			return;
-		}
-		// 모든 유저가 익명으로 글 쓸 권한이 존재
-		if (this.user instanceof Anonymous) {
-			this.user.setAnonyMode();
-
-			String title = inputString("제목");
-			String content = inputString("내용");
-
-			if (this.user.anonyMode()) {
-				Post post = new Post(title, content, user.getId());
-				board.add(post);
-
-				map.get(this.user).add(post);
-			}
-			System.out.println("포스팅이 등록되었습니다.");
-			this.user.setAnonyMode();
-		}
-	}
-
-	private void runWritePostMenu(int select) {
-		if (select == 1)
-			writePostPublic();
-		else if (select == 2)
-			writePostAnonymous();
 	}
 
 	private void viewMyPost() {
@@ -271,13 +236,25 @@ public class ConsoleBoard {
 		if (this.user.getId().equals("admin")) {
 			printAllUsers();
 
-			int index = inputNumber("추방할 회원 번호") -1;
+			int index = inputNumber("추방할 회원 번호");
+			
+			if(index == 0) {
+				System.err.println("관리자는 탈퇴할 수 없습니다.");
+				return;
+			}
 			
 			// 관리자 본인도 탈퇴할 수 없음
-			if(index <= 0 || index >= map.size()) {
+			if(index < 0 || index > map.size()) {
 				System.err.println("유효한 값이 아닙니다.");
+				return;
 			}
+			
+			User target = userManager.getUser(index);
+			userManager.removeUser(target);
+			boardManager.removeUserPostsAll(target);
 
+			map.remove(target);
+			System.out.println("추방 완료");
 		} else {
 			System.err.println("관리자만 사용할 수 있는 기능입니다.");
 			return;
@@ -287,7 +264,7 @@ public class ConsoleBoard {
 	private void printAllUsers() {
 		System.out.println();
 		for (int i = 0; i < map.size(); i++) {
-			System.out.println(String.format("%d) %s\n", i, map.keySet()));
+			System.out.println(String.format("%d) %s\n", i, user.getId()));
 		}
 	}
 
@@ -310,8 +287,7 @@ public class ConsoleBoard {
 		else if (select == 5)
 			viewAllPosts();
 		else if (select == 6) {
-			printWritePostMenu();
-			runWritePostMenu(inputNumber("선택"));
+			writePostPublic();
 		} else if (select == 7) {
 			printModifyPostMenu();
 			runModifyPostMenu(inputNumber("선택"));
