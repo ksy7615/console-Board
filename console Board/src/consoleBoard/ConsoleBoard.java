@@ -211,7 +211,7 @@ public class ConsoleBoard {
 				return;
 			}
 
-			boardManager.removePost(this.user, index);
+			boardManager.removePost(index);
 			map.get(this.user).remove(index);
 			board.remove(index);
 
@@ -239,7 +239,7 @@ public class ConsoleBoard {
 				return;
 			}
 
-			if (index < 0 || index > map.size()) {
+			if (index < 0 || index >= map.size()) {
 				System.err.println("유효한 값이 아닙니다.");
 				return;
 			}
@@ -266,6 +266,22 @@ public class ConsoleBoard {
 	private void deletePostByAdmin() {
 		if (this.user.getId().equals("admin")) {
 			viewAllPosts();
+			
+			int index = inputNumber("삭제할 글")-1;
+			int size = 0;
+
+			for (User user : map.keySet()) {
+				ArrayList<Post> userPosts = map.get(user);
+				size = userPosts.size();
+			}
+			
+			if (index < 0 || index >= size) {
+				System.err.println("유효한 값이 아닙니다.");
+				return;
+			}
+			
+			
+			
 
 		} else {
 			System.err.println("관리자만 사용할 수 있는 기능입니다.");
