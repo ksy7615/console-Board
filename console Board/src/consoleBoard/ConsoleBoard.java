@@ -13,7 +13,7 @@ public class ConsoleBoard {
 
 	private UserManager userManager;
 	private BoardManager boardManager;
-	
+
 	private User user;
 	private boolean isExit;
 
@@ -24,7 +24,7 @@ public class ConsoleBoard {
 		board = new ArrayList<>();
 		userManager = UserManager.getInstance();
 		boardManager = BoardManager.getInstance();
-		
+
 		// 관리자 처음부터 넣어주고 시작
 		map.put(userManager.addUser("admin", "admin1234"), new ArrayList<Post>());
 		user = null;
@@ -261,18 +261,33 @@ public class ConsoleBoard {
 			return;
 		}
 	}
-	
+
 	private void printAdminMenu() {
 		System.out.println("[1] 유저 추방");
 		System.out.println("[2] 게시글 삭제");
 	}
-	
+
 	private void deportUser() {
-		
+		if (this.user.getId().equals("admin")) {
+			printAllUsers();
+
+			int index = inputNumber("추방할 회원 번호");
+
+		} else {
+			System.err.println("관리자만 사용할 수 있는 기능입니다.");
+			return;
+		}
 	}
-	
+
+	private void printAllUsers() {
+		System.out.println();
+		for (int i = 1; i < map.size(); i++) {
+			System.out.println(String.format("%d) %s\n", i, map.keySet()));
+		}
+	}
+
 	private void runAdminMenu(int select) {
-		if(select == 1)
+		if (select == 1)
 			deportUser();
 //		else if(select == 2)
 //			deletePostByAdmin();
@@ -300,8 +315,7 @@ public class ConsoleBoard {
 		else if (select == 9) {
 			printAdminMenu();
 			runAdminMenu(inputNumber("선택"));
-		}
-		else if (select == 0)
+		} else if (select == 0)
 			isExit = true;
 	}
 
