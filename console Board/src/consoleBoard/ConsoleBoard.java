@@ -14,8 +14,6 @@ public class ConsoleBoard {
 	private UserManager userManager;
 	private BoardManager boardManager;
 	private User user;
-
-	private AnonymousUser anonymousUser;
 	private boolean isExit;
 
 	private Scanner scanner = new Scanner(System.in);
@@ -27,7 +25,6 @@ public class ConsoleBoard {
 		boardManager = BoardManager.getInstance();
 
 		user = null;
-		anonymousUser = null;
 	}
 
 	private void printBoard() {
