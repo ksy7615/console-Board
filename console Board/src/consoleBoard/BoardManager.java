@@ -58,7 +58,7 @@ public class BoardManager {
 		}
 	}
 
-	public boolean removePost(User user, int index) {
+	public boolean removePost(int index) {
 		if (index >= 0 && index < board.size()) {
 		// 삭제할 포스팅 선택
 		Post post = board.get(index);
@@ -76,5 +76,5 @@ public class BoardManager {
 	        }
 	    }
 	}
-
+	
 }
